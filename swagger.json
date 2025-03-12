@@ -1,0 +1,1880 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "BuntesBegegnen.Api",
+    "version": "1.0"
+  },
+  "paths": {
+    "/account/register": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationErrorDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationErrorDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationErrorDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/login": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/account/logout": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/account/mine": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Account"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/activities": {
+      "post": {
+        "tags": [
+          "Activities"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityCreatedDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityCreatedDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityCreatedDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "minDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "maxDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "searchTerm",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "onlyRegistered",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ActivityDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ActivityDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ActivityDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/activities/{id}": {
+      "get": {
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateActivityDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateActivityDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateActivityDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/activities/{id}/register": {
+      "post": {
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/activities/{id}/unregister": {
+      "post": {
+        "tags": [
+          "Activities"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/admin/users": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserWithRolesDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserWithRolesDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserWithRolesDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/users/{userId}/roles": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "roleName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "roleName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/admin/users/{userId}/locked": {
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "isLocked",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/admin/users/{userId}/reset-password": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/admin/users/{userId}": {
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/debug/my-claims": {
+      "get": {
+        "tags": [
+          "Debug"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClaimDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/debug/assume": {
+      "post": {
+        "tags": [
+          "Debug"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/debug/rate-limiting-test": {
+      "get": {
+        "tags": [
+          "Debug"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/debug/error-test": {
+      "get": {
+        "tags": [
+          "Debug"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/debug/activities-as-code": {
+      "get": {
+        "tags": [
+          "Debug"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/inquiry": {
+      "post": {
+        "tags": [
+          "Inquiry"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInquiryDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInquiryDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInquiryDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/metadata": {
+      "get": {
+        "tags": [
+          "Metadata"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiMetadataDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiMetadataDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiMetadataDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile/{id}": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfileDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfileDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProfileDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountDto": {
+        "required": [
+          "roles",
+          "user"
+        ],
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/UserDto"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "Activity": {
+        "required": [
+          "category",
+          "createdAt",
+          "createdById",
+          "description",
+          "endTime",
+          "isAllDay",
+          "location",
+          "maxNumberOfParticipants",
+          "promoterId",
+          "recurrenceFrequency",
+          "recurrenceInterval",
+          "registrationLocked",
+          "repeatCount",
+          "repeatUntil",
+          "startTime",
+          "title",
+          "visibility"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdById": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/User"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "promoterId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "promoter": {
+            "$ref": "#/components/schemas/Promoter"
+          },
+          "title": {
+            "type": "string"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/ActivityVisibility"
+          },
+          "category": {
+            "$ref": "#/components/schemas/ActivityCategory"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isAllDay": {
+            "type": "boolean"
+          },
+          "maxNumberOfParticipants": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "registrationLocked": {
+            "type": "boolean"
+          },
+          "location": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "recurrenceFrequency": {
+            "$ref": "#/components/schemas/ActivityRecurrenceFrequency"
+          },
+          "recurrenceInterval": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "repeatUntil": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "repeatCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "recurrenceDates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityRecurrenceDate"
+            }
+          },
+          "recurrenceByDay": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityRecurrenceByDay"
+            }
+          },
+          "recurrenceByMonthDay": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityRecurrenceByMonthDay"
+            }
+          },
+          "recurrenceExceptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityRecurrenceException"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActivityCategory": {
+        "enum": [
+          "Excursion",
+          "Creativity",
+          "Exercise"
+        ],
+        "type": "string"
+      },
+      "ActivityCreatedDto": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActivityDto": {
+        "required": [
+          "createdAt",
+          "createdById",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdById": {
+            "type": "string"
+          },
+          "promoterId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/ActivityVisibility"
+          },
+          "category": {
+            "$ref": "#/components/schemas/ActivityCategory"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isAllDay": {
+            "type": "boolean"
+          },
+          "maxNumberOfParticipants": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "registrationLocked": {
+            "type": "boolean"
+          },
+          "location": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "recurrenceFrequency": {
+            "$ref": "#/components/schemas/ActivityRecurrenceFrequency"
+          },
+          "recurrenceInterval": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "repeatUntil": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "repeatCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isInstance": {
+            "type": "boolean"
+          },
+          "recurrenceDates": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "recurrenceByDay": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityRecurrenceByDayDto"
+            }
+          },
+          "recurrenceByMonthDay": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "recurrenceExceptions": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "isRegistered": {
+            "type": "boolean"
+          },
+          "currentNumberOfParticipants": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActivityRecurrenceByDay": {
+        "required": [
+          "activityId",
+          "dayOfWeek",
+          "ordinal"
+        ],
+        "type": "object",
+        "properties": {
+          "activityId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "activity": {
+            "$ref": "#/components/schemas/Activity"
+          },
+          "ordinal": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dayOfWeek": {
+            "$ref": "#/components/schemas/DayOfWeek"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActivityRecurrenceByDayDto": {
+        "type": "object",
+        "properties": {
+          "ordinal": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dayOfWeek": {
+            "$ref": "#/components/schemas/DayOfWeek"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActivityRecurrenceByMonthDay": {
+        "required": [
+          "activityId",
+          "monthDay"
+        ],
+        "type": "object",
+        "properties": {
+          "activityId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "activity": {
+            "$ref": "#/components/schemas/Activity"
+          },
+          "monthDay": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActivityRecurrenceDate": {
+        "required": [
+          "activityId",
+          "startTime"
+        ],
+        "type": "object",
+        "properties": {
+          "activityId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "activity": {
+            "$ref": "#/components/schemas/Activity"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActivityRecurrenceException": {
+        "type": "object",
+        "properties": {
+          "activityId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "activity": {
+            "$ref": "#/components/schemas/Activity"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActivityRecurrenceFrequency": {
+        "enum": [
+          "None",
+          "Weekly",
+          "Monthly",
+          "FixedDates"
+        ],
+        "type": "string"
+      },
+      "ActivityVisibility": {
+        "enum": [
+          "PrivateDraft",
+          "SharedDraft",
+          "Public"
+        ],
+        "type": "string"
+      },
+      "ApiMetadataDto": {
+        "type": "object",
+        "properties": {
+          "previewModeEnabled": {
+            "type": "boolean"
+          },
+          "previewModeRegistrationPasswordRequired": {
+            "type": "boolean"
+          },
+          "enableUserInteraction": {
+            "type": "boolean"
+          },
+          "apiMetadataRefreshInterval": {
+            "type": "string",
+            "format": "date-span",
+            "nullable": true
+          },
+          "typeConstraints": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/TypeConstraintsDto"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ClaimDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateInquiryDto": {
+        "type": "object",
+        "properties": {
+          "emailAddress": {
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/InquiryType"
+          },
+          "message": {
+            "maxLength": 100000,
+            "minLength": 3,
+            "type": "string"
+          },
+          "isAnonymous": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateUserDto": {
+        "required": [
+          "email"
+        ],
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "maxLength": 25,
+            "minLength": 2,
+            "type": "string"
+          },
+          "lastName": {
+            "maxLength": 25,
+            "minLength": 2,
+            "type": "string"
+          },
+          "birthDay": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "email": {
+            "maxLength": 500,
+            "minLength": 0,
+            "type": "string"
+          },
+          "phoneNumber": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "streetName": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "houseNumber": {
+            "maxLength": 10,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "zipCode": {
+            "maxLength": 5,
+            "minLength": 0,
+            "pattern": "\\d{5}",
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "goals": {
+            "maxLength": 10000,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "hobbies": {
+            "maxLength": 10000,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          },
+          "impairedSight": {
+            "type": "boolean"
+          },
+          "impairedHearing": {
+            "type": "boolean"
+          },
+          "impairedSpeech": {
+            "type": "boolean"
+          },
+          "impairedMobility": {
+            "type": "boolean"
+          },
+          "additionalHandicaps": {
+            "maxLength": 5000,
+            "minLength": 0,
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DayOfWeek": {
+        "enum": [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "type": "string"
+      },
+      "FieldValidationConstraintDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/ValidationConstraintType"
+          },
+          "constraint": { }
+        },
+        "additionalProperties": false
+      },
+      "InquiryType": {
+        "enum": [
+          "General",
+          "ActivitySuggestion",
+          "PlatformSuggestion"
+        ],
+        "type": "string"
+      },
+      "LoginRequestDto": {
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Promoter": {
+        "required": [
+          "city",
+          "createdAt",
+          "createdById",
+          "houseNumber",
+          "name",
+          "streetName",
+          "website",
+          "zipCode"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdById": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/User"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "website": {
+            "type": "string",
+            "nullable": true
+          },
+          "streetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "houseNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "zipCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "activities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Activity"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegistrationErrorDto": {
+        "required": [
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegistrationRequestDto": {
+        "required": [
+          "account",
+          "password",
+          "previewModePassword"
+        ],
+        "type": "object",
+        "properties": {
+          "account": {
+            "$ref": "#/components/schemas/CreateUserDto"
+          },
+          "password": {
+            "type": "string"
+          },
+          "previewModePassword": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TypeConstraintsDto": {
+        "type": "object",
+        "properties": {
+          "fields": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FieldValidationConstraintDto"
+              }
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateActivityDto": {
+        "type": "object",
+        "properties": {
+          "promoterId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/ActivityVisibility"
+          },
+          "category": {
+            "$ref": "#/components/schemas/ActivityCategory"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isAllDay": {
+            "type": "boolean"
+          },
+          "maxNumberOfParticipants": {
+            "maximum": 10000,
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "registrationLocked": {
+            "type": "boolean"
+          },
+          "location": {
+            "maxLength": 200,
+            "minLength": 3,
+            "type": "string"
+          },
+          "description": {
+            "maxLength": 10000,
+            "minLength": 10,
+            "type": "string"
+          },
+          "recurrenceFrequency": {
+            "$ref": "#/components/schemas/ActivityRecurrenceFrequency"
+          },
+          "recurrenceInterval": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "repeatUntil": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "repeatCount": {
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "recurrenceDates": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "recurrenceByDay": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityRecurrenceByDayDto"
+            }
+          },
+          "recurrenceByMonthDay": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "recurrenceExceptions": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "required": [
+          "createdAt",
+          "firstName",
+          "lastName"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedUserName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "normalizedEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailConfirmed": {
+            "type": "boolean"
+          },
+          "passwordHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "securityStamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "concurrencyStamp": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumberConfirmed": {
+            "type": "boolean"
+          },
+          "twoFactorEnabled": {
+            "type": "boolean"
+          },
+          "lockoutEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lockoutEnabled": {
+            "type": "boolean"
+          },
+          "accessFailedCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "birthDay": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "streetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "houseNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "zipCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "promoterId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "promoter": {
+            "$ref": "#/components/schemas/Promoter"
+          },
+          "goals": {
+            "type": "string",
+            "nullable": true
+          },
+          "hobbies": {
+            "type": "string",
+            "nullable": true
+          },
+          "favoriteCategories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserFavoriteCategory"
+            }
+          },
+          "impairedSight": {
+            "type": "boolean"
+          },
+          "impairedHearing": {
+            "type": "boolean"
+          },
+          "impairedSpeech": {
+            "type": "boolean"
+          },
+          "impairedMobility": {
+            "type": "boolean"
+          },
+          "additionalHandicaps": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "birthDay": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "email": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "streetName": {
+            "type": "string",
+            "nullable": true
+          },
+          "houseNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "zipCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "goals": {
+            "type": "string",
+            "nullable": true
+          },
+          "hobbies": {
+            "type": "string",
+            "nullable": true
+          },
+          "impairedSight": {
+            "type": "boolean"
+          },
+          "impairedHearing": {
+            "type": "boolean"
+          },
+          "impairedSpeech": {
+            "type": "boolean"
+          },
+          "impairedMobility": {
+            "type": "boolean"
+          },
+          "additionalHandicaps": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserFavoriteCategory": {
+        "required": [
+          "category",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "category": {
+            "$ref": "#/components/schemas/ActivityCategory"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserProfileDto": {
+        "required": [
+          "firstName",
+          "lastName"
+        ],
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserWithRolesDto": {
+        "required": [
+          "roles",
+          "user"
+        ],
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ValidationConstraintType": {
+        "enum": [
+          "ChildObject",
+          "Required",
+          "StringLength",
+          "RegularExpression",
+          "Password",
+          "Range"
+        ],
+        "type": "string"
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Enter the authentication token (without the 'Bearer' prefix)",
+        "scheme": "Bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+[*]
+indent_style = space
+
+[*.cs]
+csharp_style_prefer_primary_constructors = false
+csharp_indent_case_contents_when_block = false
+dotnet_style_parentheses_in_relational_binary_operators = always_for_clarity
+
+dotnet_diagnostic.IDE0047.severity = none

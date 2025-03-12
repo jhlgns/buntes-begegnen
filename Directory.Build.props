@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ScopedCssEnabled>false</ScopedCssEnabled>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <UserSecretsId>de0372af-bd60-45ac-8b8d-71606e6c58e4</UserSecretsId>
+  </PropertyGroup>
+</Project>

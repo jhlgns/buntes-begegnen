@@ -1,0 +1,3 @@
+[submodule "ext/Bundlor.Lib.Hosting"]
+	path = ext/Bundlor.Lib.Hosting
+	url = git@gitlab.com:bundlor/bundlor.lib.hosting.git

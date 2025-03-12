@@ -1,0 +1,131 @@
+{
+    "version": "0.2.0",
+    "compounds": [
+        {
+            "name": "API + Frontend",
+            "configurations": [
+                "BuntesBegegnen.Api",
+                "Frontend - Firefox"
+            ]
+        }
+    ],
+    "configurations": [
+        {
+            "name": "BuntesBegegnen.Api",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/BuntesBegegnen.Api/bin/Debug/net8.0/BuntesBegegnen.Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/BuntesBegegnen.Api",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Local"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/src/BuntesBegegnen.Api/Views"
+            },
+            "logging": {
+                "moduleLoad": false
+            },
+            "console": "integratedTerminal",
+            "requireExactSource": false
+        },
+        {
+            "name": "BuntesBegegnen.Api.Test",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/tests/BuntesBegegnen.Api.Tests/bin/Debug/net8.0/BuntesBegegnen.Api.Tests.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/tests/BuntesBegegnen.Api.Tests",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Local"
+            },
+            "logging": {
+                "moduleLoad": false
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Bundlor.Teaser",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/Bundlor.Teaser/bin/Debug/net8.0/Bundlor.Teaser.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Bundlor.Teaser",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Local"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/src/Bundlor.Teaser/Views"
+            },
+            "logging": {
+                "moduleLoad": false
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Bundlor.Trialblazer",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/Bundlor.Trialblazer/bin/Debug/net8.0/Bundlor.Trialblazer.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Bundlor.Trialblazer",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Local"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/src/Bundlor.Trialblazer/Views"
+            },
+            "logging": {
+                "moduleLoad": false
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Bundlor.DiagNote.Api",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/src/Bundlor.DiagNote.Api/bin/Debug/net8.0/Bundlor.DiagNote.Api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Bundlor.DiagNote.Api",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Local"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/src/Bundlor.DiagNote.Api/Views"
+            },
+            "logging": {
+                "moduleLoad": false
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        },
+        {
+            "name": "Frontend - Firefox",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "url": "http://localhost:5173",
+            "webRoot": "${workspaceFolder}/src/frontend",
+            "pathMappings": [
+                {
+                    "url": "http://localhost:5173/src",
+                    "path": "${workspaceFolder}/src/frontend/src"
+                }
+            ],
+        }
+    ]
+}

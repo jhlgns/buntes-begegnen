@@ -1,0 +1,11 @@
+.
+
+!src
+!Directory.Build.props
+.git
+bin
+obj
+*.xcf
+Dockerfile
+*.Dockerfile
+node_modules
